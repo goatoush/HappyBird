@@ -33,6 +33,7 @@ class BirdsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
         self.title = self.family.groupName
     }
     

@@ -36,6 +36,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
         
         searchBar.delegate = self
         DispatchQueue.global(qos: .background).async {

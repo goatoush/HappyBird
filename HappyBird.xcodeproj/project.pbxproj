@@ -30,6 +30,8 @@
 		30C4579E259D0B36009ADBC8 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C4579D259D0B36009ADBC8 /* FavoritesViewController.swift */; };
 		30C457AE259D519A009ADBC8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 30C457AD259D519A009ADBC8 /* README.md */; };
 		30C7E0F22599339200140B20 /* BirdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C7E0F12599339200140B20 /* BirdsTableViewController.swift */; };
+		30E794D2259E349A009E0F0A /* SeenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E794D1259E349A009E0F0A /* SeenViewController.swift */; };
+		30E794DA259E4282009E0F0A /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E794D9259E4282009E0F0A /* NearbyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		30C4579D259D0B36009ADBC8 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		30C457AD259D519A009ADBC8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		30C7E0F12599339200140B20 /* BirdsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdsTableViewController.swift; sourceTree = "<group>"; };
+		30E794D1259E349A009E0F0A /* SeenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeenViewController.swift; sourceTree = "<group>"; };
+		30E794D9259E4282009E0F0A /* NearbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,8 @@
 				30B76A0325999F97006DBEED /* BirdDetailViewController.swift */,
 				30B76A23259BDD0D006DBEED /* SearchViewController.swift */,
 				30C4579D259D0B36009ADBC8 /* FavoritesViewController.swift */,
+				30E794D1259E349A009E0F0A /* SeenViewController.swift */,
+				30E794D9259E4282009E0F0A /* NearbyViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -330,7 +336,9 @@
 				30B76A092599A1E4006DBEED /* Slide.swift in Sources */,
 				305958C92590221F00BC9CA7 /* AppDelegate.swift in Sources */,
 				3059590725926E3F00BC9CA7 /* PhotoDataService.swift in Sources */,
+				30E794DA259E4282009E0F0A /* NearbyViewController.swift in Sources */,
 				3041DCCB25981497009E65FA /* CachedURLResponse+Duration.swift in Sources */,
+				30E794D2259E349A009E0F0A /* SeenViewController.swift in Sources */,
 				30C4579E259D0B36009ADBC8 /* FavoritesViewController.swift in Sources */,
 				305958CB2590221F00BC9CA7 /* SceneDelegate.swift in Sources */,
 			);

@@ -29,12 +29,32 @@ struct Family: Codable, Equatable {
     var birds: [Bird]?
 }
 
+struct Observation: Codable, Equatable {
+    let speciesCode: String
+    let comName: String
+    let sciName: String
+    let locId: String
+    let locName: String
+    let obsDt: String
+    let howMany: Int
+    let lat: Float
+    let lng: Float
+    let obsValid: Bool
+    let obsReviewed: Bool
+    let locationPrivate: Bool
+    let subId: String
+}
+
 class BirdDataService {
     let apiKey = "5kkpf1onaqj5"
 
     static let shared = BirdDataService()
     
     private init() {
+        if UserDefaults.standard.float(forKey: "lat") != 0.0 {
+            self.lat = UserDefaults.standard.float(forKey: "lat")
+            self.lng = UserDefaults.standard.float(forKey: "lng")
+        }
         fetchData { [self] in
             for i in 0..<families.count {
                 let family = families[i]
@@ -49,6 +69,7 @@ class BirdDataService {
             }
             for i in 0..<birds.count {
                 let bird = birds[i]
+                birdsBySpeciesCode[bird.speciesCode] = bird
                 if taxonOrders.count > bird.taxonOrder,
                       let j = taxonOrders[bird.taxonOrder]
                 {
@@ -63,6 +84,10 @@ class BirdDataService {
             taxonOrders.removeAll()
             for bird in birds where UserDefaults.standard.bool(forKey: "isFavorited \(bird.sciName)") {
                 favoritedBirds.append(bird)
+            }
+            favoritedBirds.sort { (lhs, rhs) -> Bool in lhs.comName < rhs.comName }
+            for bird in birds where UserDefaults.standard.bool(forKey: "hasSeen \(bird.sciName)") {
+                seenBirds.append(bird)
             }
             favoritedBirds.sort { (lhs, rhs) -> Bool in lhs.comName < rhs.comName }
             families = families.filter { $0.birds != nil }
@@ -81,7 +106,12 @@ class BirdDataService {
     var isReady = false
     var onReadyHandlers: [() -> Void] = []
     var favoritedBirds: [Bird] = []
-    
+    var seenBirds: [Bird] = []
+    var birdsBySpeciesCode: [String: Bird] = [:]
+    var lat: Float?
+    var lng: Float?
+    var observations: [Observation]?
+
     // Extinct
     let familiesToExclude: [String] = [
         "Hawaiian Honeyeaters",
@@ -106,6 +136,38 @@ class BirdDataService {
         return isFavorite
     }
     
+    func toggleSeen(bird: Bird) -> Bool {
+        var hasSeen = false
+        if UserDefaults.standard.bool(forKey: "hasSeen \(bird.sciName)") {
+            UserDefaults.standard.set(false, forKey: "hasSeen \(bird.sciName)")
+            seenBirds = seenBirds.filter { $0 != bird }
+        }
+        else {
+            UserDefaults.standard.set(true, forKey: "hasSeen \(bird.sciName)")
+            seenBirds.append(bird)
+            hasSeen = true
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "seenChanged"), object: nil)
+        return hasSeen
+    }
+    
+    func getObservationsNearby(completion: @escaping () -> Void) {
+        getData(endPoint: "data/obs/geo/recent?lat=\(String(format: "%.2f", lat!))&lng=\(String(format: "%.2f", lng!))") { (data, request) in
+            print("something")
+            if let data = data {
+                do {
+                    self.observations = try JSONDecoder().decode([Observation].self, from: data)
+                    print(self.observations?.count)
+                }
+                catch let error {
+                    print(error)
+                    DataService.shared.clearCacheFor(request: request)
+                }
+            }
+            completion()
+        }
+    }
+    
     func onDataReady(completion: @escaping () -> Void) {
         if isReady {
             completion()
@@ -118,7 +180,7 @@ class BirdDataService {
 
     func fetchData(completion: @escaping () -> Void) {
         var canComplete = false
-        getData(endPoint: "taxonomy/ebird") { (data, request) in
+        getData(endPoint: "ref/taxonomy/ebird?fmt=json") { (data, request) in
             // print("taxonomy/ebird")
             if let data = data {
                 do {
@@ -138,7 +200,7 @@ class BirdDataService {
                 }
             }
         }
-        getData(endPoint: "sppgroup/merlin") { (data, request) in
+        getData(endPoint: "ref/sppgroup/merlin?fmt=json") { (data, request) in
             // print("sppgroup/merlin")
             if let data = data {
                 do {
@@ -165,7 +227,8 @@ class BirdDataService {
     }
     
     func getData(endPoint: String, completion: @escaping (_ data: Data?, _ request: URLRequest?) -> Void) {
-        DataService.shared.request("https://api.ebird.org/v2/ref/\(endPoint)?fmt=json", headers: ["X-eBirdApiToken": self.apiKey], completion: completion)
+        print("https://api.ebird.org/v2/\(endPoint)?fmt=json")
+        DataService.shared.request("https://api.ebird.org/v2/\(endPoint)", headers: ["X-eBirdApiToken": self.apiKey], completion: completion)
     }
     
     func getDataOld(endPoint: String, completion: @escaping (_ data: Data?) -> Void) {

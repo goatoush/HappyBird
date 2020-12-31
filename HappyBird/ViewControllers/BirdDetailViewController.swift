@@ -8,9 +8,23 @@
 import Foundation
 import UIKit
 import Alamofire
+import MapKit
+
+class Capital: NSObject, MKAnnotation {
+    var title: String?
+    var coordinate: CLLocationCoordinate2D
+    var info: String
+    
+    init(title: String, coordinate: CLLocationCoordinate2D, info: String) {
+        self.title = title
+        self.coordinate = coordinate
+        self.info = info
+    }
+}
 
 class BirdDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var favorite: UIBarButtonItem!
+    @IBOutlet var seen: UIBarButtonItem!
     @IBOutlet var contentView: UIView!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var pageScrollView: UIScrollView!
@@ -23,6 +37,9 @@ class BirdDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var familyHeader: UILabel!
     @IBOutlet var familyCom: UILabel!
     @IBOutlet var familySci: UILabel!
+    @IBOutlet var mapViewLabel: UILabel!
+    @IBOutlet var mapView: MKMapView!
+    var showMap = false
     var bird: Bird!
     var slides: [Slide] = []
     
@@ -32,12 +49,15 @@ class BirdDetailViewController: UIViewController, UIScrollViewDelegate {
         if UserDefaults.standard.bool(forKey: "isFavorited \(self.bird.sciName)") {
             favorite.image = UIImage(systemName: "heart.fill")
         }
+        if UserDefaults.standard.bool(forKey: "hasSeen \(self.bird.sciName)") {
+            seen.image = UIImage(systemName: "binoculars.fill")
+        }
         self.stackView.setCustomSpacing(10, after: pageControl)
         self.stackView.setCustomSpacing(17, after: sciName)
         self.stackView.setCustomSpacing(0, after: orderHeader)
         self.stackView.setCustomSpacing(24, after: order)
         self.stackView.setCustomSpacing(0, after: familyHeader)
-        self.title = self.bird.comName
+        self.title = ""
         self.comName.text = self.bird.comName
         if self.bird.extinct ?? false {
             self.comName.text = self.comName.text! + " (extinct)"
@@ -52,8 +72,31 @@ class BirdDetailViewController: UIViewController, UIScrollViewDelegate {
         pageControl.numberOfPages = 0
         pageControl.currentPage = 0
         view.bringSubviewToFront(pageControl)
-        //self.scrollView.contentSize = contentView.frame.size
+        
+        if !showMap {
+            mapViewLabel.isHidden = true
+            mapView.isHidden = true
+        }
+        
+        let london = Capital(title: "", coordinate: CLLocationCoordinate2D(latitude: 33.84, longitude: -84.36), info: "Home to the 2012 Summer Olympics.")
+                let oslo = Capital(title: "", coordinate: CLLocationCoordinate2D(latitude: 33.87, longitude: -84.52), info: "Founded over a thousand years ago.")
+                let paris = Capital(title: "", coordinate: CLLocationCoordinate2D(latitude: 33.82, longitude: -84.20), info: "Often called the City of Light.")
+
+                mapView.addAnnotations([london, oslo, paris])
+                mapView.showAnnotations(mapView.annotations, animated: true)
+
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if showMap {
+            self.familyCom.text = self.familyCom.text?.replacingOccurrences(of: ", ", with: ",\n")
+            if self.familyCom.text?.count ?? 0 > 15, !(self.familyCom.text?.contains("\n") ?? false) {
+                self.familyCom.text = self.familyCom.text?.replacingOccurrences(of: " ", with: "\n")
+            }
+            self.familySci.text = self.familySci.text?.replacingOccurrences(of: ", ", with: ",\n")
+        }
+     }
     
     @IBAction func favoriteBird() {
         if BirdDataService.shared.toggleFavorite(bird: self.bird) {
@@ -62,16 +105,15 @@ class BirdDetailViewController: UIViewController, UIScrollViewDelegate {
         else {
             favorite.image = UIImage(systemName: "heart")
         }
-//        if UserDefaults.standard.bool(forKey: "isFavorited \(self.bird.sciName)") {
-//            favorite.image = UIImage(systemName: "heart")
-//            UserDefaults.standard.set(false, forKey: "isFavorited \(self.bird.sciName)")
-//            BirdDataService.shared.favoritedBirds = BirdDataService.shared.favoritedBirds.filter { $0 != self.bird }
-//        }
-//        else {
-//            favorite.image = UIImage(systemName: "heart.fill")
-//            UserDefaults.standard.set(true, forKey: "isFavorited \(self.bird.sciName)")
-//            BirdDataService.shared.favoritedBirds.append(self.bird)
-//        }
+    }
+    
+    @IBAction func seeBird(_ sender: Any) {
+        if BirdDataService.shared.toggleSeen(bird: self.bird) {
+            seen.image = UIImage(systemName: "binoculars.fill")
+        }
+        else {
+            seen.image = UIImage(systemName: "binoculars")
+        }
     }
     
     func getImages(_ maxCount: Int = 5) {
@@ -80,8 +122,6 @@ class BirdDetailViewController: UIViewController, UIScrollViewDelegate {
                 DispatchQueue.main.async {
                     let slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
                     self.slides.append(slide)
-//                    self.pageControl.numberOfPages = self.slides.count
-//                    self.pageControl.alpha = self.slides.count < 2 ? 0 : 1
                     slide.imageView.image = UIImage(named: "PlaceholderImage")
                     self.pageScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.width * 2/3)
                     slide.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
@@ -117,7 +157,6 @@ class BirdDetailViewController: UIViewController, UIScrollViewDelegate {
                         self.pageScrollView.contentSize = CGSize(width: self.view.frame.width * CGFloat(self.slides.count), height: self.view.frame.width * 2/3)
                         slide.frame = CGRect(x: self.view.frame.width * CGFloat(i), y: 0, width: self.view.frame.width, height: self.view.frame.height)
                         self.pageScrollView.addSubview(slide)
-                        //self.scrollView.contentSize = self.contentView.frame.size
                     }
                 }
             }
