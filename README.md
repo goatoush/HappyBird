@@ -1,1 +1,3 @@
-# HappyBird
+# Happy Bird
+
+## Introduction
