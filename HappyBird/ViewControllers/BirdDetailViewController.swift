@@ -78,12 +78,14 @@ class BirdDetailViewController: UIViewController, UIScrollViewDelegate {
             mapView.isHidden = true
         }
         
-        let london = Capital(title: "", coordinate: CLLocationCoordinate2D(latitude: 33.84, longitude: -84.36), info: "Home to the 2012 Summer Olympics.")
-                let oslo = Capital(title: "", coordinate: CLLocationCoordinate2D(latitude: 33.87, longitude: -84.52), info: "Founded over a thousand years ago.")
-                let paris = Capital(title: "", coordinate: CLLocationCoordinate2D(latitude: 33.82, longitude: -84.20), info: "Often called the City of Light.")
-
-                mapView.addAnnotations([london, oslo, paris])
-                mapView.showAnnotations(mapView.annotations, animated: true)
+        var pins: [Capital] = []
+        for _ in 0...Int.random(in: 1...7) {
+            let count = Int.random(in: 1...4)
+            let title = count == 1 ? "1 sighting" : "\(count) sightings"
+            pins.append(Capital(title: title, coordinate: CLLocationCoordinate2D(latitude: 33.84 + Double.random(in: -0.3...0.3), longitude: -84.36 + Double.random(in: -0.3...0.3)), info: "Home to the 2012 Summer Olympics."))
+        }
+        mapView.addAnnotations(pins)
+        mapView.showAnnotations(mapView.annotations, animated: true)
 
     }
     
@@ -117,12 +119,14 @@ class BirdDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func getImages(_ maxCount: Int = 5) {
-        PhotoDataService.shared.getPhotoURLs(birds: [bird], size: "z") { urlStrings in
+        PhotoDataService.shared.getPhotoURLs(birds: [bird], size: "z") { urlStrings, titles  in
             guard urlStrings.count > 0 else {
                 DispatchQueue.main.async {
                     let slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
                     self.slides.append(slide)
                     slide.imageView.image = UIImage(named: "PlaceholderImage")
+                    slide.flickrIcon.isHidden = true
+                    slide.textLabel.isHidden = true
                     self.pageScrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.width * 2/3)
                     slide.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
                     self.pageScrollView.addSubview(slide)
@@ -138,6 +142,7 @@ class BirdDetailViewController: UIViewController, UIScrollViewDelegate {
                         let slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
                         self.slides.append(slide)
                         slide.imageView.image = UIImage(data: data)
+                        slide.textLabel.text = titles[i]
                         if (slide.imageView.image?.size.width)! < 2.5 / 2 * (slide.imageView.image?.size.height)! {
                             slide.backgroundImageView.image = UIImage(data: data)?.alpha(0.75)
                             slide.backgroundImageView.isHidden = false

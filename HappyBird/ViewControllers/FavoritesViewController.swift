@@ -67,6 +67,12 @@ class FavoritesViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if (BirdDataService.shared.favoritedBirds.count == 0) {
+            collectionView.setEmptyMessage("The birds you favorite will appear here")
+        }
+        else {
+            collectionView.restore()
+        }
         return BirdDataService.shared.favoritedBirds.count
     }
     

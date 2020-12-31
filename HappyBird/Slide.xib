@@ -24,26 +24,66 @@
                         <constraint firstAttribute="width" secondItem="05I-dU-UZy" secondAttribute="height" multiplier="3:2" id="zzm-Wr-Vel"/>
                     </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGa-zv-1Iz" customClass="GradientBackgroundView" customModule="HappyBird" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="WQt-Ee-peT"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flickr" translatesAutoresizingMaskIntoConstraints="NO" id="FaK-Jv-kDW">
+                    <rect key="frame" x="10" y="5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="FaK-Jv-kDW" secondAttribute="height" multiplier="1:1" id="jjZ-OU-HZ2"/>
+                        <constraint firstAttribute="width" constant="20" id="qXO-5H-LQ3"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIU-EC-p17">
+                    <rect key="frame" x="38" y="5" width="356" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="05I-dU-UZy" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="0Ct-nq-x6N"/>
+                <constraint firstItem="TGa-zv-1Iz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4ah-lI-yOM"/>
+                <constraint firstAttribute="trailing" secondItem="cIU-EC-p17" secondAttribute="trailing" constant="20" symbolic="YES" id="4hC-Ki-BpZ"/>
+                <constraint firstItem="cIU-EC-p17" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="A8V-Z0-NTV"/>
+                <constraint firstItem="cIU-EC-p17" firstAttribute="height" secondItem="FaK-Jv-kDW" secondAttribute="height" id="Blg-eC-IaW"/>
+                <constraint firstItem="FaK-Jv-kDW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Ey5-Ky-fhL"/>
                 <constraint firstItem="05I-dU-UZy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Hga-JI-JEl"/>
                 <constraint firstItem="05I-dU-UZy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="IRY-6D-Mkc"/>
                 <constraint firstItem="8hZ-EG-iOm" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="VZq-Gy-Kmm"/>
+                <constraint firstItem="TGa-zv-1Iz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="cog-Bv-WkX"/>
+                <constraint firstItem="FaK-Jv-kDW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="huI-uc-3tP"/>
                 <constraint firstItem="8hZ-EG-iOm" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ltM-2z-Ebv"/>
                 <constraint firstItem="8hZ-EG-iOm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="sqe-Wb-qle"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TGa-zv-1Iz" secondAttribute="trailing" id="vew-ji-Awx"/>
+                <constraint firstItem="cIU-EC-p17" firstAttribute="leading" secondItem="FaK-Jv-kDW" secondAttribute="trailing" constant="8" symbolic="YES" id="xFJ-ID-lRm"/>
                 <constraint firstItem="8hZ-EG-iOm" firstAttribute="width" secondItem="8hZ-EG-iOm" secondAttribute="height" multiplier="3:2" id="xFg-Ve-8in"/>
             </constraints>
             <connections>
                 <outlet property="backgroundImageView" destination="8hZ-EG-iOm" id="OmF-LL-8gz"/>
+                <outlet property="flickrIcon" destination="FaK-Jv-kDW" id="pSs-fX-g5k"/>
                 <outlet property="imageView" destination="05I-dU-UZy" id="tGW-v8-la0"/>
+                <outlet property="textLabel" destination="cIU-EC-p17" id="2ew-kh-Aum"/>
             </connections>
             <point key="canvasLocation" x="-42.028985507246382" y="68.973214285714278"/>
         </view>
     </objects>
     <resources>
+        <image name="Flickr" width="600" height="600"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

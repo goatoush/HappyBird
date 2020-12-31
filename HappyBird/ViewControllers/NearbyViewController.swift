@@ -28,7 +28,19 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate {
         title = "Nearby"
         navigationItem.title = "Recent Sightings Near You"
         tableView.reloadData()
-
+        if BirdDataService.shared.lat != nil {
+            if let placeName = BirdDataService.shared.placeName {
+                navigationItem.title = "Recent Sightings Near \(placeName)"
+            }
+            self.emptyMessage = ""
+            BirdDataService.shared.getObservationsNearby {
+                self.observations = BirdDataService.shared.observations
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -153,6 +165,7 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate {
                 self.lookUpCurrentLocation() { placemark in
                     if let placeName = placemark?.name  {
                         DispatchQueue.main.async { [self] in
+                            UserDefaults.standard.setValue(placeName, forKey: "placeName")
                             navigationItem.title = "Recent Sightings Near \(placeName)"
                             tableView.reloadData()
                         }

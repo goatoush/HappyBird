@@ -27,6 +27,7 @@ struct Photo: Codable {
     let secret: String
     let server: String
     let farm: Int
+    let title: String
     let ispublic: Int
     let isfriend: Int
     let isfamily: Int
@@ -99,15 +100,15 @@ class PhotoDataService {
     
     static let shared = PhotoDataService()
 
-    func getPhotoURLs(birds: [Bird], size: String? = nil, format: String = "png", completion: @escaping (_ urlStrings: [String]) -> Void) {
+    func getPhotoURLs(birds: [Bird], size: String? = nil, format: String = "png", completion: @escaping (_ urlStrings: [String], _ titles: [String]) -> Void) {
         searchImages(birds) { photos in
-            guard var photos = photos else { return completion([]) }
+            guard var photos = photos else { return completion([], []) }
             photos = photos.filter {
                 !self.dontUse.contains("https://live.staticflickr.com/\($0.server)/\($0.id)_\($0.secret).png")
             }
             completion(photos.map {
                 "https://live.staticflickr.com/\($0.server)/\($0.id)_\($0.secret)\(size != nil ? "_\(size!)" : "").\(format)"
-            })
+            }, photos.map { $0.title })
         }
     }
 

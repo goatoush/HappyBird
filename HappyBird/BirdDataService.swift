@@ -55,6 +55,9 @@ class BirdDataService {
             self.lat = UserDefaults.standard.float(forKey: "lat")
             self.lng = UserDefaults.standard.float(forKey: "lng")
         }
+        if UserDefaults.standard.string(forKey: "placeName") != nil {
+            self.placeName = UserDefaults.standard.string(forKey: "placeName")
+        }
         fetchData { [self] in
             for i in 0..<families.count {
                 let family = families[i]
@@ -110,6 +113,7 @@ class BirdDataService {
     var birdsBySpeciesCode: [String: Bird] = [:]
     var lat: Float?
     var lng: Float?
+    var placeName: String?
     var observations: [Observation]?
 
     // Extinct

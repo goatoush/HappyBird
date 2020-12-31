@@ -46,6 +46,12 @@ class SeenViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if (BirdDataService.shared.seenBirds.count == 0) {
+            collectionView.setEmptyMessage("The birds you mark as seen will appear here.\nGo out bird-watching, and remember to come\nback and mark the birds you have seen.")
+        }
+        else {
+            collectionView.restore()
+        }
         return BirdDataService.shared.seenBirds.count
     }
     
