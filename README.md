@@ -2,7 +2,7 @@
 
 ## Introduction  
 
-This app is an app where you can browse, search and favorite almost every bird in eBird's API birds and see certain information about them such as
+Happy Bird is an app where you can browse, search and favorite almost every bird in eBird's API birds and see certain information about them such as
 - Common name
 - Scientific name
 - Order
@@ -10,8 +10,7 @@ This app is an app where you can browse, search and favorite almost every bird i
 - A certain amount of images if available  
 and in future
 - Region
-- Location on a map
-Some of the biggest inspirations for this app were CS50, FeederWatch and the squirrels in my backyard.
+- Location on a map   
 ***
 ## Relation to CS50
 
@@ -51,10 +50,15 @@ Using eBird's API, we would be able to see where bird species mainly spend their
 ***
 ## Conclusion
 
-
+Finally, I would like to thank CS50, for allowing me to make this app, my dad, for supporting and helping me the entire way, and eBird and Flickr for giving me the data needed to create the app.
 ***
 ## References
 
-- [eBird](https://documenter.getpostman.com/view/664302/S1ENwy59?version=latest)
-- “Flickr Services.” Flickr.com, Flickr Services, 2013, [www.flickr.com/services/api/](www.flickr.com/services/api/).
-- Birkhead, Tim. Bird Sense : What It’s like to Be a Bird. 2012. London, Bloomsbury, 2013.
+- “EBird API 2.0.” *EBird API 2.0*, 2020, [documenter.getpostman.com/view/664302/S1ENwy59?version=latest.](https://documenter.getpostman.com/view/664302/S1ENwy59?version=latest)
+- “EBird - Discover a New World of Birding...” *eBird*, 2020, [ebird.org](ebird.org).
+- “Project FeederWatch.” *FeederWatch*, 2020, [feederwatch.org/](feederwatch.org/).
+- “Flickr Services.” *Flickr*, Flickr Services, 2013, [www.flickr.com/services/api/](www.flickr.com/services/api/).
+- Birkhead, Tim. *Bird Sense : What It’s like to Be a Bird*. 2012. London, Bloomsbury, 2013.
+- Birdshare. “Birdshare.” *Flickr*, Flickr, 31 Dec. 2020, [www.flickr.com/groups/birdshare](www.flickr.com/groups/birdshare).
+- Malan, David, and Brian Yu. “CS50: Introduction to computer science.” CS50x. Harvard University. 2019.
+- McWilliam, Tommy. “Week 8, iOS Track” CS50x. Harvard University. 2020.
