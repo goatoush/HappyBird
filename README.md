@@ -64,3 +64,6 @@ Finally, I would like to thank CS50, for allowing me to make this app, my dad, f
 - Birdshare. “Birdshare.” *Flickr*, Flickr, 31 Dec. 2020, [www.flickr.com/groups/birdshare](www.flickr.com/groups/birdshare).
 - Malan, David, and Brian Yu. “CS50: Introduction to computer science.” CS50x. Harvard University. 2019.
 - McWilliam, Tommy. “Week 8, iOS Track” CS50x. Harvard University. 2020.
+
+Inspiration:
+![Inspiration for Final Project. Bird books and soft toys](Inspiration.jpg)

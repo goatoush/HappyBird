@@ -32,6 +32,7 @@
 		30C7E0F22599339200140B20 /* BirdsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C7E0F12599339200140B20 /* BirdsTableViewController.swift */; };
 		30E794D2259E349A009E0F0A /* SeenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E794D1259E349A009E0F0A /* SeenViewController.swift */; };
 		30E794DA259E4282009E0F0A /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E794D9259E4282009E0F0A /* NearbyViewController.swift */; };
+		30E794DF259EBAFB009E0F0A /* Inspiration.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 30E794DE259EBAFB009E0F0A /* Inspiration.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		30C7E0F12599339200140B20 /* BirdsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdsTableViewController.swift; sourceTree = "<group>"; };
 		30E794D1259E349A009E0F0A /* SeenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeenViewController.swift; sourceTree = "<group>"; };
 		30E794D9259E4282009E0F0A /* NearbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
+		30E794DE259EBAFB009E0F0A /* Inspiration.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Inspiration.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		305958BC2590221F00BC9CA7 = {
 			isa = PBXGroup;
 			children = (
+				30E794DE259EBAFB009E0F0A /* Inspiration.jpg */,
 				30C457AD259D519A009ADBC8 /* README.md */,
 				305958C72590221F00BC9CA7 /* HappyBird */,
 				305958DE2590222300BC9CA7 /* HappyBirdTests */,
@@ -295,6 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30E794DF259EBAFB009E0F0A /* Inspiration.jpg in Resources */,
 				305958D52590222200BC9CA7 /* LaunchScreen.storyboard in Resources */,
 				305958D22590222200BC9CA7 /* Assets.xcassets in Resources */,
 				305958D02590221F00BC9CA7 /* Main.storyboard in Resources */,
