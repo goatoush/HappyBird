@@ -1,22 +1,24 @@
 # **Happy Bird**: All About Birds
 
-## Introduction  
+## Introduction
 
 Happy Bird is an app where you can browse, search and favorite almost every bird in eBird's API and see certain information about them such as
 - Common name
 - Scientific name
 - Order
 - Family
-- A certain amount of images if available  
-  
-and in future  
-  
+- A certain amount of images if available
+
+and in future
+
 - Region
-- Location on a map   
+- Location on a map
+
+It is built using Swift and used eBird and Flickr APIs and user location to show bird sightings nearby on a map.
 ***
 ## Relation to CS50
 
-Happy Bird was built as the Final Project for CS50 to reflect all that has been learned through out the previous problem sets like dealing with memory, arrays, algorithms and data structures. A lot of the python syntax was used in swift, and the iOS track really helped with the making of the app.
+Happy Bird was built as the Final Project for CS50 to reflect all that has been learned through out the previous problem sets like dealing with memory, arrays, algorithms and data structures. A lot of the python syntax was used in swift, and the iOS track really helped with the making of the app. In future this app will help scientists keep track of bird population by submiting checklists to FeederWatch.
 ***
 ## Challenges
 
@@ -28,7 +30,7 @@ One of the main challenges faced was getting the data from the APIs especially s
 
 ### Caching Data
 
-Once I had the data, it was important to store it to prevent requesting the data too much and to also store it offline. This turned out to be quite difficult mainly because there wasn't enough online help in one method, and most of the caching methods were not up to date since Swift is not much of a common language. 
+Once I had the data, it was important to store it to prevent requesting the data too much and to also store it offline. This turned out to be quite difficult mainly because there wasn't enough online help in one method, and most of the caching methods were not up to date since Swift is not much of a common language.
 
 ### Other
 
@@ -49,6 +51,7 @@ Part of the original idea, was to have a place where people can post videos of s
 ### Regions + Interactive map
 
 Using eBird's API, I would be able to see where bird species mainly spend their time and put that in the details page, and also have a tab where users can see an interactive world map with regions on them, and once they tap the region it would show them all birds in that region in a list, and also have the subregions in that specific region where users will be able to zoom in on. Once a bird is tapped, it will show the locations for all the recent sightings of that bird in the specific region/subregion.
+
 ***
 ## Conclusion
 
@@ -60,10 +63,13 @@ Finally, I would like to thank CS50, for allowing me to make this app, my dad, f
 - “EBird - Discover a New World of Birding...” *eBird*, 2020, [ebird.org](ebird.org).
 - “Project FeederWatch.” *FeederWatch*, 2020, [feederwatch.org/](feederwatch.org/).
 - “Flickr Services.” *Flickr*, Flickr Services, 2013, [www.flickr.com/services/api/](www.flickr.com/services/api/).
-- Birkhead, Tim. *Bird Sense : What It’s like to Be a Bird*. 2012. London, Bloomsbury, 2013.
+- Birkhead, Tim. *Bird Sense: What It’s like to Be a Bird*. 2012. London, Bloomsbury, 2013.
 - Birdshare. “Birdshare.” *Flickr*, Flickr, 31 Dec. 2020, [www.flickr.com/groups/birdshare](www.flickr.com/groups/birdshare).
 - Malan, David, and Brian Yu. “CS50: Introduction to computer science.” CS50x. Harvard University. 2019.
 - McWilliam, Tommy. “Week 8, iOS Track” CS50x. Harvard University. 2020.
 
 Inspiration:
-![Inspiration for Final Project. Bird books and soft toys](Inspiration.jpg)
+![Inspiration for Final Project. Bird books and soft toys](inspirationn.jpg)
+
+[Youtube Link](https://youtu.be/ZihulSBTP-s)
+[Github Rep](https://github.com/goatoush/HappyBird)
