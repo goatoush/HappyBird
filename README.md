@@ -2,19 +2,21 @@
 
 ## Introduction  
 
-Happy Bird is an app where you can browse, search and favorite almost every bird in eBird's API birds and see certain information about them such as
+Happy Bird is an app where you can browse, search and favorite almost every bird in eBird's API and see certain information about them such as
 - Common name
 - Scientific name
 - Order
 - Family
 - A certain amount of images if available  
-and in future
+  
+and in future  
+  
 - Region
 - Location on a map   
 ***
 ## Relation to CS50
 
-Happy Bird was built as the Final Project for CS50 to reflect all that has been learned through out the previous problem sets like dealing with memory, arrays, algorithms and data structures. Also a lot of the python syntax was used in swift, and the iOS track really helped with the making of the app.
+Happy Bird was built as the Final Project for CS50 to reflect all that has been learned through out the previous problem sets like dealing with memory, arrays, algorithms and data structures. A lot of the python syntax was used in swift, and the iOS track really helped with the making of the app.
 ***
 ## Challenges
 
@@ -22,15 +24,15 @@ The biggest challenge overall was getting the project done by New Year's Eve. Si
 
 ### Using APIs
 
-One of the main challenges faced was getting the data from the APIs especially sinc I had to ask for the API key when I barely knew what the app would actually be like. Also, every API has a different structure and it is hard to get exectly the information that you want, especially because some of them require `http` headers, while others need the key in the url, and also filtering Flickr results was tough.
+One of the main challenges faced was getting the data from the APIs especially since I had to ask for the API key when I barely knew what the app would actually be like. Every API has a different structure and it is hard to get exactly the information that you want, especially because some of them require `http` headers, while others need the key in the url, and also filtering Flickr results was tough.
 
 ### Caching Data
 
-Once I had the data, It was important to store it to prevent requesting the data too much and to also store it offline. This turned out to be quite difficult mainly because there wasn't enough online help in one method, and most of the caching methods were not up to date since swift is not much of a common language. 
+Once I had the data, it was important to store it to prevent requesting the data too much and to also store it offline. This turned out to be quite difficult mainly because there wasn't enough online help in one method, and most of the caching methods were not up to date since Swift is not much of a common language. 
 
 ### Other
 
-Other challenges include storyboard constraints, since those can become very confusing and also the preview doesn't always exactly match the output. Also it was dificult to get the scroll view to work where you see the details, and since we only had limited time before the end of the year, we ended up changing the font size so that the user wouldn't need to scroll.
+Other challenges include storyboard constraints, since those can become very confusing and also the preview doesn't always exactly match the output. Also it was dificult to get the scroll view to work where you see the details, and since I only had limited time before the end of the year, I ended up changing the font size so that the user wouldn't need to scroll.
 ***
 ## Future Improvenents
 
@@ -46,7 +48,7 @@ Part of the original idea, was to have a place where people can post videos of s
 
 ### Regions + Interactive map
 
-Using eBird's API, we would be able to see where bird species mainly spend their time and put that in the details page, and also have a tab where users can see an interactive world map with regions on them, and once they tap the region it would show them all birds in that region in a list, and also have the subregions in that specific region where users will be able to zoom in on. Once a bird is tapped, it will show the locations for all the recent sightings of that bird in the specific region/subregion.
+Using eBird's API, I would be able to see where bird species mainly spend their time and put that in the details page, and also have a tab where users can see an interactive world map with regions on them, and once they tap the region it would show them all birds in that region in a list, and also have the subregions in that specific region where users will be able to zoom in on. Once a bird is tapped, it will show the locations for all the recent sightings of that bird in the specific region/subregion.
 ***
 ## Conclusion
 
