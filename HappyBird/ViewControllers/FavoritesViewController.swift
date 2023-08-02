@@ -128,7 +128,7 @@ class FavoritesViewController: UICollectionViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewDetailFromFavorites" {
-            if let destVC = segue.destination as? BirdDetailViewController {
+            if let destVC = segue.destination as? DetailViewController {
                 destVC.bird = selectedBird!
             }
         }

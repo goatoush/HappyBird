@@ -31,7 +31,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet var searchBar: UISearchBar!
     var families: [Family] = []
     var results: [Family] = []
-    var resultsAsOneArray: [Bird] = []
     var searchString: String = ""
     
     override func viewDidLoad() {
@@ -124,7 +123,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             for i in 0..<results.count {
                 results[i].birds = []
                 for bird in families[i].birds ?? [] {
-                    if bird.comName.localizedCaseInsensitiveContains(searchText) {
+                    if bird.comName.localizedCaseInsensitiveContains(searchText) || bird.sciName.localizedCaseInsensitiveContains(searchText) || bird.speciesCode.localizedCaseInsensitiveContains(searchText) || bird.familyComName!.localizedCaseInsensitiveContains(searchText) ||    bird.familySciName!.localizedCaseInsensitiveContains(searchText) || ("extinct".localizedCaseInsensitiveContains(searchText) && bird.extinct ?? false == true) || bird.order!.localizedCaseInsensitiveContains(searchText) {
                         results[i].birds?.append(bird)
                     }
                 }
@@ -141,7 +140,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewDetailFromSearch" {
-            if let destVC = segue.destination as? BirdDetailViewController {
+            if let destVC = segue.destination as? DetailViewController {
                 if let indexPath = self.tableView.indexPathForSelectedRow {
                     let birds = results[indexPath.section].birds ?? []
                     destVC.bird = birds[indexPath.row]

@@ -27,14 +27,47 @@ class BirdCell: UITableViewCell {
     }
 }
 
+// class SubBirdCell: UITableViewCell {
+//     @IBOutlet var birdName: UILabel!
+//     var name: String!
+//     var url: String?
+//     var request: Alamofire.Request?
+//
+//     override func prepareForReuse() {
+//         super.prepareForReuse()
+//         request?.cancel()
+//         request = nil
+//         birdName.text = nil
+//         url = nil
+//         name = nil
+//     }
+// }
+
 class BirdsTableViewController: UITableViewController {
+    @IBOutlet var filterButton: UIBarButtonItem!
     var family: Family!
     var selectedBird: Bird? = nil
+    var highlightedBird: Bird? = nil
+    var highlightedBirdIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         self.title = self.family.groupName
+        if highlightedBird != nil {
+            for bird in family.birds ?? [] {
+                if bird == highlightedBird {
+                    break
+                }
+                highlightedBirdIndex += 1
+            }
+            print("\nBirdIndex: \(highlightedBirdIndex)\n")
+            let indexPath = IndexPath(row: highlightedBirdIndex, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+        }
+        else {
+            print("\nBirdIndex: Unknown\n")
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,7 +82,12 @@ class BirdsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BirdCell", for: indexPath) as! BirdCell
         guard let birds = family.birds else { return cell }
         let bird = birds[indexPath.row]
-        cell.birdName.text = bird.comName
+        
+        if bird.extinct ?? false {
+            cell.birdName.text = "\(bird.comName) (extinct)"
+        } else {
+            cell.birdName.text = bird.comName
+        }
         cell.name = bird.comName
         PhotoDataService.shared.getPhotoURL(birds: [bird], size: "q") { url in
             guard let url = url, cell.name == bird.comName else { return }
@@ -73,10 +111,11 @@ class BirdsTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewDetail" {
-            if let destVC = segue.destination as? BirdDetailViewController {
+            if let destVC = segue.destination as? DetailViewController {
                 if let indexPath = self.tableView.indexPathForSelectedRow {
                     selectedBird = family.birds![indexPath.row]
                     destVC.bird = selectedBird
+                    destVC.showFindInBrowse = false
                 }
             }
         }

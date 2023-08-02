@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>62183899813-60f9is8r51g5a3ba1jb7l5f531pv4rkd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.62183899813-60f9is8r51g5a3ba1jb7l5f531pv4rkd</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDg6OpIpeMxnhdX31336Ox7-4_6cCR4Tn0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>62183899813</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.bharatgupta.utshaho.HappyBirdApp</string>
+	<key>PROJECT_ID</key>
+	<string>happy-bird-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>happy-bird-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:62183899813:ios:f16ec46c308b91e7ca434c</string>
+</dict>
+</plist>

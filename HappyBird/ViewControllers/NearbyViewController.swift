@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import CoreLocation
+import MapKit
 
 class NearbyViewController: UITableViewController, CLLocationManagerDelegate {
     var selectedBird: Bird? = nil
@@ -69,6 +70,7 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate {
         let observation = observations[indexPath.row]
         cell.birdName.text = observation.comName
         cell.name = observation.comName
+        print(observation.speciesCode)
         let bird = BirdDataService.shared.birdsBySpeciesCode[observation.speciesCode]!
         PhotoDataService.shared.getPhotoURL(birds: [bird], size: "q") { url in
             guard let url = url, cell.name == bird.comName else { return }
@@ -193,13 +195,18 @@ class NearbyViewController: UITableViewController, CLLocationManagerDelegate {
         return
     }
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewDetailFromNearby" {
-            if let destVC = segue.destination as? BirdDetailViewController {
+            if let destVC = segue.destination as? DetailViewController {
                 if let indexPath = self.tableView.indexPathForSelectedRow {
                     let observation = self.observations![indexPath.row]
                     selectedBird = BirdDataService.shared.birdsBySpeciesCode[observation.speciesCode]!
+                    let sightings: [Sighting] = []
+                    destVC.sightings = sightings
                     destVC.bird = selectedBird
+                    print(BirdDataService.shared.taxonOrders.count)
                     destVC.showMap = true
                 }
             }

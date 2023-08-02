@@ -107,7 +107,7 @@ class SeenViewController: UICollectionViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewDetailFromSeen" {
-            if let destVC = segue.destination as? BirdDetailViewController {
+            if let destVC = segue.destination as? DetailViewController {
                 destVC.bird = selectedBird!
             }
         }
